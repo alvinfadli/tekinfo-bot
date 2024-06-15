@@ -24,10 +24,6 @@ export default function FileTable({ fetchData, ragData }: FileTableProps) {
   const supabase = createClient();
   const [loadingMap, setLoadingMap] = useState<Record<string, boolean>>({});
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
   const deleteItem = async (fileName: string) => {
     try {
       setLoadingMap((prevLoadingMap) => ({

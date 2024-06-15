@@ -1,8 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import FileTable from "./FileTable";
-import { UploadForm } from "./UploadForm";
+import FileTable from "../../../components/FileTable";
 import { createClient } from "@/utils/supabase/client";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function RagDashboard() {
   const supabase = createClient();
@@ -26,8 +27,11 @@ export default function RagDashboard() {
   return (
     <>
       <div className="flex justify-between">
-        <h1 className="font-semibold">RAG Documents</h1>
-        <UploadForm onSuccess={fetchData} />
+        <h1 className="font-semibold">Documents</h1>
+        {/* <UploadForm onSuccess={fetchData} /> */}
+        <Button asChild>
+          <Link href={"/upload-document"}>Add</Link>
+        </Button>
       </div>
       <div className="my-3 flex flex-col">
         <div className="-m-1.5 overflow-x-auto">

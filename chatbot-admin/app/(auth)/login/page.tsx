@@ -1,6 +1,6 @@
 import SignInForm from "@/components/SignInForm";
 import Image from "next/image";
-import TekinfoLogo from "../../public/logo-ti.webp";
+import TekinfoLogo from "../../../public/logo-ti.webp";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 
