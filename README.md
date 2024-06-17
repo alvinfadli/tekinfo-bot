@@ -1,29 +1,30 @@
 
-# Sibi signs
+# Tekinfo-Bot
 
-Sibi signs is a web-based application that utilizes Computer Vision and Convolutional Neural Network technology to classify Indonesian SIBI-styled sign language.
+Tekinfo-Bot is a web-based chatbot application to answer questions about Information Technology Department of Politeknik NegeriPadang using LLM Model (Llama 3) with Retrieval-Augmented Generation method
 
-P.S Let me know if there's something wrong
+### Chatbot app
 
-### Technologies
+#### Technologies
 
-- HTML/CSS
-- Tailwind
-- Python 
-- CVZone
-- Flask
+- Python
+- Langchain
+- Streamlit
+- Llama 3 (LLM)
 
-### Set up virtual environment
+#### Navigate to chatbot directory
 
-Here is official [docs](https://docs.python.org/3/library/venv.html) if the commands below aren't working. 
+```bash
+  cd chatbot
+```
 
-Create virtual environment, if 
+#### Create virtual environment
 
 ```bash
   python -m venv venv
 ```
 
-Activate virtual environment
+#### Activate virtual environment
 
 On windows
 ```bash
@@ -36,15 +37,59 @@ On linux
   source venv/Scripts/activate
 ```
 
-### Install dependencies
+#### Install dependencies
 ```bash
   pip install -r requirements.txt
 ```
-### Running
 
-Run server (default port 5000)
+#### Setup env 
+
+Create env using env.example file
 
 ```bash
-  flask run
+  cp .env.example .env
 ```
 
+Fill the variable with your own API keys from https://replicate.com/ and https://huggingface.co/
+
+#### Running
+```bash
+  python -m streamlit app.py
+```
+
+### Chatbot Admin App
+
+#### Technologies
+
+- Javascript/Typescript
+- Next Js
+- React
+- Supabase (Database and Authentication)
+- shadcn/ui
+
+#### Navigate to chatbot directory
+
+```bash
+  cd chatbot-admin
+```
+
+#### Install dependencies
+
+```bash
+  npm install
+```
+
+#### Setup env 
+
+Create env using env.example file
+
+```bash
+  cp .env.local.example .env.local
+```
+
+Fill the variable with your own API keys from https://supabase.com/
+
+#### Running
+```bash
+  npm run dev
+```
