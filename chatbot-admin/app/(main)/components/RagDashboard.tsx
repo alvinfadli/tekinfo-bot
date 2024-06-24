@@ -28,7 +28,6 @@ export default function RagDashboard() {
     <>
       <div className="flex justify-between">
         <h1 className="font-semibold">Documents</h1>
-        {/* <UploadForm onSuccess={fetchData} /> */}
         <Button asChild>
           <Link href={"/upload-document"}>Add</Link>
         </Button>
