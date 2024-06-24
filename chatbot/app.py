@@ -6,6 +6,10 @@ from app.prompts import llama_prompt
 from langchain_community.llms import Replicate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+from langchain_community.document_transformers import (
+    LongContextReorder
+)
+
 
 def create_conversational_chain(vector_store):
     llm = Replicate(
@@ -15,8 +19,14 @@ def create_conversational_chain(vector_store):
 
     memory = ConversationBufferMemory(
         memory_key="chat_history", return_messages=True, output_key='answer')
-    chain = ConversationalRetrievalChain.from_llm(llm, retriever=vector_store.as_retriever(search_kwargs={"k": 6}), combine_docs_chain_kwargs={"prompt": llama_prompt}, return_source_documents=True)
+    chain = ConversationalRetrievalChain.from_llm(llm, retriever=vector_store.as_retriever(search_kwargs={"k": 6}), combine_docs_chain_kwargs={"prompt": llama_prompt}, return_source_documents=True, memory=memory)
+
     return chain
+
+def reorder_embedding(docs):
+    reordering = LongContextReorder()
+    reordered_docs = reordering.transform_documents(docs)
+    return reordered_docs
 
 def main():
     initialize_session_state()
@@ -24,7 +34,8 @@ def main():
 
     if len(st.session_state['history']) == 0:
         docs = load_docs()
-        vector_store = process_documents(docs)
+        reordered = reorder_embedding(docs)
+        vector_store = process_documents(reordered)
         st.session_state['vector_store'] = vector_store
 
     if st.session_state['vector_store'] is not None:
