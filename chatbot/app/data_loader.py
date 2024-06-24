@@ -4,15 +4,29 @@ from app.db import supabase
 DATA_PATH = './data'
 
 def load_docs():
-    from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
-
-    text = []
-    loader = DirectoryLoader(DATA_PATH, glob='*.pdf', loader_cls=PyPDFLoader)
+    from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader, Docx2txtLoader, TextLoader
+    # text = []
+    # loader = DirectoryLoader(DATA_PATH, glob='*.pdf', loader_cls=PyPDFLoader)
     
-    if loader:
-        text.extend(loader.load())
+    # if loader:
+    #     text.extend(loader.load())
 
-    return text
+    # return text
+    documents = []
+    for file in os.listdir("data"):
+        if file.endswith(".pdf"):
+            pdf_path = "./data/" + file
+            loader = PyPDFLoader(pdf_path)
+            documents.extend(loader.load())
+        elif file.endswith('.docx') or file.endswith('.doc'):
+            doc_path = "./data/" + file
+            loader = Docx2txtLoader(doc_path)
+            documents.extend(loader.load())
+        elif file.endswith('.txt'):
+            text_path = "./data/" + file
+            loader = TextLoader(text_path)
+            documents.extend(loader.load())
+    return documents
 
 def get_data():
     dir_path = "./data/"
