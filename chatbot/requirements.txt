@@ -109,3 +109,4 @@ watchdog==4.0.0
 yarl==1.9.4
 zipp==3.18.1
 supabase
+docx2txt
