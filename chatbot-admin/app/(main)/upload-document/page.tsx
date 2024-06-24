@@ -36,7 +36,8 @@ export default async function UploadDocument() {
               </li>
               <li>
                 Include metadata such as author, date of creation, and keywords
-                for easier retrieval.
+                for easier retrieval.{" "}
+                <span className="text-green-400">(optional)</span>
               </li>
             </ul>
           </li>
