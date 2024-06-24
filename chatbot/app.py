@@ -10,12 +10,12 @@ from langchain.chains import ConversationalRetrievalChain
 def create_conversational_chain(vector_store):
     llm = Replicate(
         model="meta/meta-llama-3-8b-instruct",
-        model_kwargs={"temperature": 0.0, "top_p": 1, "max_new_tokens":5000}
+        model_kwargs={"temperature": 0.5, "top_p": 1, "max_new_tokens":5000}
     )
 
     memory = ConversationBufferMemory(
         memory_key="chat_history", return_messages=True, output_key='answer')
-    chain = ConversationalRetrievalChain.from_llm(llm, retriever=vector_store.as_retriever(search_kwargs={"k": 2}), combine_docs_chain_kwargs={"prompt": llama_prompt}, return_source_documents=True, memory=memory)
+    chain = ConversationalRetrievalChain.from_llm(llm, retriever=vector_store.as_retriever(search_kwargs={"k": 6}), combine_docs_chain_kwargs={"prompt": llama_prompt}, return_source_documents=True)
     return chain
 
 def main():
