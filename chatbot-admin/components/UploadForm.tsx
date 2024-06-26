@@ -55,7 +55,7 @@ export function UploadForm() {
           {...register("file", { required: true })}
           id="upload_file"
           type="file"
-          accept="application/pdf"
+          accept=".pdf, .doc, .docx, .txt"
           className="mb-1 bg-white"
         />
       </div>
