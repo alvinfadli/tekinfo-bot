@@ -4,14 +4,7 @@ from app.db import supabase
 DATA_PATH = './data'
 
 def load_docs():
-    from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader, Docx2txtLoader, TextLoader
-    # text = []
-    # loader = DirectoryLoader(DATA_PATH, glob='*.pdf', loader_cls=PyPDFLoader)
-    
-    # if loader:
-    #     text.extend(loader.load())
-
-    # return text
+    from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2txtLoader
     documents = []
     for file in os.listdir("data"):
         if file.endswith(".pdf"):
