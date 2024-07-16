@@ -23,7 +23,7 @@ def load_docs():
 
 def get_data():
     dir_path = "./data/"
-    contents = os.listdir(dir_path)
+    contents = os.listdir("data")
     files_in_local = [f for f in contents if os.path.isfile(os.path.join(dir_path, f))]
     files = supabase.storage.from_("rag-data").list()
     file_in_storage = [file['name'] for file in files]
