@@ -1,6 +1,6 @@
 import os
 from app.db import supabase
-from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2txtLoader
+from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2txtLoader, DirectoryLoader
 
 def load_docs():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -21,19 +21,28 @@ def load_docs():
         file_path = os.path.join(data_dir, file)
         if file.endswith(".pdf"):
             try:
-                loader = PyPDFLoader(file_path)
+                loader = DirectoryLoader(file_path,loader_cls=PyPDFLoader,
+                             recursive=True, show_progress=True, 
+                             use_multithreading=True,max_concurrency=8)
+                # loader = PyPDFLoader(file_path)
                 documents.extend(loader.load())
             except Exception as e:
                 print(f"Error loading PDF file {file}: {e}")
         elif file.endswith('.docx') or file.endswith('.doc'):
             try:
-                loader = Docx2txtLoader(file_path)
+                loader = DirectoryLoader(file_path,loader_cls=Docx2txtLoader,
+                             recursive=True, show_progress=True, 
+                             use_multithreading=True,max_concurrency=8)
+                # loader = Docx2txtLoader(file_path)
                 documents.extend(loader.load())
             except Exception as e:
                 print(f"Error loading DOCX/DOC file {file}: {e}")
         elif file.endswith('.txt'):
             try:
-                loader = TextLoader(file_path)
+                loader = DirectoryLoader(file_path,loader_cls=TextLoader,
+                             recursive=True, show_progress=True, 
+                             use_multithreading=True,max_concurrency=8)
+                # loader = TextLoader(file_path)
                 documents.extend(loader.load())
             except Exception as e:
                 print(f"Error loading TXT file {file}: {e}")
