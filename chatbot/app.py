@@ -14,7 +14,7 @@ from langchain_community.document_transformers import (
 def create_conversational_chain(vector_store):
     llm = Replicate(
         model="meta/meta-llama-3-8b-instruct",
-        model_kwargs={"temperature": 0.5, "top_p": 1, "max_new_tokens":5000}
+        model_kwargs={"temperature": 0.5, "top_p": 1, "max_new_tokens":10000}
     )
 
     memory = ConversationBufferMemory(
