@@ -3,6 +3,10 @@
 
 Tekinfo-Bot is a web-based chatbot application to answer questions about Information Technology Department of Politeknik Negeri Padang using LLM Model (Llama 3) with Retrieval-Augmented Generation method
 
+(Deployed):
+- [https://tekinfo-bot.vercel.app/](https://tekinfo-bot.vercel.app/)
+- [https://alvinfadli-tekinfo-bot-hf.hf.space/](https://alvinfadli-tekinfo-bot-hf.hf.space/)
+
 ### Chatbot app
 
 #### Technologies
